@@ -1,17 +1,11 @@
 .App {
   text-align: center;
+  background: rgb(129, 139, 147);
+  min-height: 800px;
+  max-height: fit-content;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
 .App-header {
   background-color: #282c34;
@@ -21,18 +15,76 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+}
+h1{
+  padding-top: 4rem;
+  text-transform: uppercase;
+  font-size: 40px;
+  font-weight: 550;
+  letter-spacing: 2px;
+  color:rgb(17, 80, 215);;
+}
+.completed {
+  text-decoration: line-through;
+  opacity: 0.5;
+  font-size: 25px;
+}
+form{
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  margin-top: 6rem;
+ 
+}
+.todo-input{
+  padding: 1.5rem 6rem;
+}
+button i {
+  font-size: 32px;
+}
+.select{
+  padding: 0.5rem 1rem;
+  background-color:rgba(23, 23, 22, 0.215)
+}
+.filter-todo{
+  padding: 1rem 1.5rem;
+}
+select option{
+  font-size: 20px;
+
+}
+.todo-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 6rem;
+ 
+}
+.todo-list{
+  list-style: none;
+  align-self: center;
+}
+.todo{
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  background-color: white;
+  padding: 2rem 6rem;
+}
+.todo-item{
+  color: rgb(17, 80, 215);
+  font-size: 32px;
+  font-weight: 700;
+  margin-right: 4rem;
+  width: 70%;
+}
+i{
+  color: rgb(17, 80, 215);
+  width: 40px;
+  height: 40px;
+   border: none;
+}
+button S{
+  border: none;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
