@@ -2,8 +2,8 @@ import React,{useState, useEffect} from 'react';
 import Todo from './Todo'
 import Form from './Form';
 
-const Todolist = ({ todos,setTodos }) => {
-  const [inputText, setInputText] = useState(" ");
+const Todolist = () => {
+  const [todos, setTodos] = useState([])
   const [status, setStatus] = useState("all");
   const [filteredTodos, setFilteredTodos] = useState([]);
   
@@ -46,10 +46,8 @@ const getLocalTodos = ()=> {
     <>
     
      <Form 
-     inputText={inputText}
      todos={todos}
      setTodos={setTodos}
-      setInputText={setInputText}
       status={status}
       setStatus={setStatus}
        />

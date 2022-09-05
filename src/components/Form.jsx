@@ -1,6 +1,7 @@
-import React from 'react'
+import React,{useState} from 'react'
 
-const Form = ({ setInputText, todos, setTodos, inputText, setStatus }) => {
+const Form = ({  todos, setTodos,  setStatus }) => {
+    const [inputText, setInputText] = useState(" ");
     const inputTextHandler = (e) => {
         console.log(e.target.value);
         setInputText(e.target.value);
