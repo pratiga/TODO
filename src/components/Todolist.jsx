@@ -4,8 +4,11 @@ import Form from './Form';
 
 const Todolist = () => {
   const [todos, setTodos] = useState([])
+  const [inputText, setInputText] = useState(" ");
   const [status, setStatus] = useState("all");
   const [filteredTodos, setFilteredTodos] = useState([]);
+  const [isEditing, setIsEditing] = useState(false);
+  const [currentTodo, setCurrentTodo] = useState({});
   
   useEffect(() => {
     getLocalTodos();
@@ -50,6 +53,12 @@ const getLocalTodos = ()=> {
      setTodos={setTodos}
       status={status}
       setStatus={setStatus}
+      inputText={inputText}
+      setInputText={setInputText}
+      isEditing={isEditing}
+      setIsEditing={setIsEditing}
+      currentTodo={currentTodo}
+      setCurrentTodo={setCurrentTodo}
        />
     
     {/* // display: list of todo */}
@@ -65,7 +74,15 @@ const getLocalTodos = ()=> {
           todos={todos}
           key={todo.id} 
           todo={todo}
-          text={todo.text} />
+          status={status}
+          text={todo.text} 
+          inputText={inputText}
+          setInputText={setInputText}
+          isEditing={isEditing}
+          setIsEditing={setIsEditing}
+          currentTodo={currentTodo}
+          setCurrentTodo={setCurrentTodo}
+      />
         ))} 
           
         </ul>
