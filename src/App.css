@@ -25,9 +25,10 @@ h1{
   color:rgb(17, 80, 215);;
 }
 .completed {
-  text-decoration: line-through;
+  text-decoration: line-through rgb(102, 53, 53);
   opacity: 0.5;
   font-size: 25px;
+  color: red;
 }
 form{
   display: flex;
@@ -84,7 +85,5 @@ i{
   height: 40px;
    border: none;
 }
-button S{
-  border: none;
-}
+
 
