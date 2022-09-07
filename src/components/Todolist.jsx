@@ -4,7 +4,6 @@ import Form from './Form';
 
 const Todolist = () => {
   const [todos, setTodos] = useState([])
-  const [inputText, setInputText] = useState(" ");
   const [status, setStatus] = useState("all");
   const [filteredTodos, setFilteredTodos] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
@@ -43,7 +42,35 @@ const getLocalTodos = ()=> {
     let todoLocal = JSON.parse(localStorage.getItem("todos"));
     setTodos(todoLocal);
   }
+
 };
+
+function handleCompleted(todo){
+  setTodos(
+    todos.map((item) => {
+      if(item.id === todo.id) {
+        return {
+          ...item,
+          completed: !item.completed,
+        };
+      }
+      return item;
+    })
+  )
+}
+
+function handleEditClick(todo) {
+  setIsEditing(true);
+  setCurrentTodo({ ...todo });
+}
+
+function handleDeleteClick(id) {
+  const removeItem = todos.filter((todo) => {
+    return todo.id !== id;
+  });
+  setTodos(removeItem);
+}
+
 
   return (
     <>
@@ -53,8 +80,6 @@ const getLocalTodos = ()=> {
      setTodos={setTodos}
       status={status}
       setStatus={setStatus}
-      inputText={inputText}
-      setInputText={setInputText}
       isEditing={isEditing}
       setIsEditing={setIsEditing}
       currentTodo={currentTodo}
@@ -69,20 +94,13 @@ const getLocalTodos = ()=> {
         <ul className='todo-list'>
     
          {filteredTodos.map((todo) => (
+          
           <Todo 
-          setTodos={setTodos}
-          todos={todos}
-          key={todo.id} 
-          todo={todo}
-          status={status}
-          text={todo.text} 
-          inputText={inputText}
-          setInputText={setInputText}
-          isEditing={isEditing}
-          setIsEditing={setIsEditing}
-          currentTodo={currentTodo}
-          setCurrentTodo={setCurrentTodo}
-      />
+           todo={todo}
+           handleCompleted={handleCompleted}
+           handleDeleteClick={handleDeleteClick}
+           handleEditClick={handleEditClick}
+          />
         ))} 
           
         </ul>
