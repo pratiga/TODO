@@ -1,8 +1,8 @@
 import React,{useState} from 'react';
 
 
-const Form = ({todos,setTodos, setStatus,
-               isEditing,setIsEditing,currentTodo,setCurrentTodo }) => {
+export default function Form({addTodo,setStatus, handleUpdateTodo,
+               isEditing,currentTodo,setCurrentTodo }) {
 const [inputText, setInputText] = useState(" ");
     const inputTextHandler = (e) => {
         console.log(e.target.value);
@@ -10,23 +10,13 @@ const [inputText, setInputText] = useState(" ");
     };
     const submitTodoHandler= (e) =>{
         e.preventDefault();
-        setTodos([
-            ...todos,
-            { text: inputText, completed:false, id: Math.random()*1000},
-        ]);
+        addTodo(inputText)
         setInputText("");
     };
     const statusHandler = (e) => {
         setStatus(e.target.value);
     }
-    function handleUpdateTodo(id, updatedTodo) {
-       
-        const updatedItem = todos.map((todo) => {
-          return todo.id === id ? updatedTodo : todo;
-        });
-        setIsEditing(false);
-        setTodos(updatedItem);
-      }
+   
     const handleEditFormSubmit=(e)=> {
         e.preventDefault();
         handleUpdateTodo(currentTodo.id, currentTodo);
@@ -44,7 +34,7 @@ const [inputText, setInputText] = useState(" ");
             <input  type="text" className="todo-input"
              onChange={handleEditInputChange}
              value={currentTodo.inputText}
-             placeholder="edit text"
+             placeholder={currentTodo.text}
               />
             <button type="submit" className='todo-button'>
                 <i className='fas fa-plus-square'></i>
@@ -85,4 +75,3 @@ const [inputText, setInputText] = useState(" ");
   )
 }
 
-export default Form

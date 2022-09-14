@@ -7,7 +7,7 @@ const Todolist = () => {
   const [status, setStatus] = useState("all");
   const [filteredTodos, setFilteredTodos] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
-  const [currentTodo, setCurrentTodo] = useState({});
+  const [currentTodo, setCurrentTodo] = useState("");
   
   useEffect(() => {
     getLocalTodos();
@@ -42,8 +42,23 @@ const getLocalTodos = ()=> {
     let todoLocal = JSON.parse(localStorage.getItem("todos"));
     setTodos(todoLocal);
   }
-
+ 
 };
+function addTodo(text){
+  setTodos([
+    ...todos,
+    { text:text, completed:false, id: Math.random()*1000},
+  ])
+}
+
+function handleUpdateTodo (id, updatedTodo) {
+       
+  const updatedItem = todos.map((todo) => {
+    return todo.id === id ?updatedTodo : todo;
+ });
+ setIsEditing(false);
+ setTodos(updatedItem);
+}
 
 function handleCompleted(todo){
   setTodos(
@@ -76,14 +91,15 @@ function handleDeleteClick(id) {
     <>
     
      <Form 
-     todos={todos}
-     setTodos={setTodos}
+     handleUpdateTodo={handleUpdateTodo}
       status={status}
       setStatus={setStatus}
       isEditing={isEditing}
       setIsEditing={setIsEditing}
       currentTodo={currentTodo}
       setCurrentTodo={setCurrentTodo}
+      addTodo={addTodo}
+      
        />
     
     {/* // display: list of todo */}
@@ -109,5 +125,6 @@ function handleDeleteClick(id) {
     </>
   )
 }
+
 
 export default Todolist
