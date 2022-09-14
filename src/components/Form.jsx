@@ -1,8 +1,8 @@
 import React,{useState} from 'react';
 
 
-export default function Form({addTodo,setStatus, handleUpdateTodo,
-               isEditing,currentTodo,setCurrentTodo }) {
+export default function Form({addTodo,setStatus, handleUpdateTodo
+              ,currentTodo,setCurrentTodo }) {
 const [inputText, setInputText] = useState(" ");
     const inputTextHandler = (e) => {
         console.log(e.target.value);
@@ -27,24 +27,24 @@ const [inputText, setInputText] = useState(" ");
       }
   return (
       <>
-      {isEditing ? (
+      {currentTodo ? (
            <div>
            <header><h1>edit todo</h1></header>
-            <form onSubmit={handleEditFormSubmit}>
+            <form >
             <input  type="text" className="todo-input"
              onChange={handleEditInputChange}
              value={currentTodo.inputText}
              placeholder={currentTodo.text}
               />
-            <button type="submit" className='todo-button'>
+            <button type="submit" className='todo-button'
+                onClick = {handleEditFormSubmit} >
                 <i className='fas fa-plus-square'></i>
             </button>
+            <button type="submit" className='todo-button'
+                onClick={()=> setCurrentTodo("")}>
+            <i className='fas fa-minus-square'></i>
+            </button>
             <div className='select'>
-                <select onChange={statusHandler} name="todos" className='filter-todo'>
-                    <option value="all">All</option>
-                    <option value="completed">completed</option>
-                    <option value="uncompleted">uncompleted</option>
-                </select>
             </div>
            </form> 
            </div> 
