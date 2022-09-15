@@ -4,11 +4,15 @@ const Todo = ({todo,handleCompleted,handleEditClick,handleDeleteClick}) => {
  
     
   return (
-      
+    <>
+    <div>
+    <h2>Category:  {todo.value}</h2>
+  </div>
     <div className='todo'>
     <li className={`todo-item ${todo.completed? "completed": ""}`}>
     {todo.text}
-    </li>
+     </li>
+    
       <button onClick={() => handleCompleted(todo)}className='complete-btn'>
       <i className='fas fa-check'></i>
       </button>
@@ -24,7 +28,7 @@ const Todo = ({todo,handleCompleted,handleEditClick,handleDeleteClick}) => {
       </button>
     </div>
     
-    
+    </>
   )
 }
 

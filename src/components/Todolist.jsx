@@ -7,7 +7,6 @@ const Todolist = () => {
   const [status, setStatus] = useState("all");
   const [filteredTodos, setFilteredTodos] = useState([]);
   const [currentTodo, setCurrentTodo] = useState("");
-  
   useEffect(() => {
     getLocalTodos();
   }, []);
@@ -43,10 +42,11 @@ const getLocalTodos = ()=> {
   }
  
 };
-function addTodo(text){
+function addTodo(text,value){
   setTodos([
     ...todos,
-    { text:text, completed:false, id: Math.random()*1000},
+    { text:text,value:value, completed:false, id: Math.random()*1000},
+  
   ])
 }
 
@@ -75,6 +75,7 @@ function handleCompleted(todo){
 
 function handleEditClick(todo) {
   setCurrentTodo({ ...todo });
+  console.log(setCurrentTodo)
 }
 
 function handleDeleteClick(id) {
