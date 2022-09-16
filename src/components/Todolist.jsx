@@ -7,7 +7,7 @@ const Todolist = () => {
   const [todos, setTodos] = useState([]);
   const [status, setStatus] = useState("all");
   const [filteredTodos, setFilteredTodos] = useState([]);
-  const [currentTodo, setCurrentTodo] = useState("");
+  const [currentTodo, setCurrentTodo] = useState(null);
   useEffect(() => {
     getLocalTodos();
   }, []);
