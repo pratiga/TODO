@@ -50,13 +50,14 @@ function addTodo(text,value){
   ])
 }
 
-function handleUpdateTodo (id, updatedTodo) {
+function handleUpdateTodo (id,title,option) {
        
   const updatedItem = todos.map((todo) => {
-    return todo.id === id ?updatedTodo : todo;
+    return todo.id === id ? {text:title,value:option} : todo;
  });
 
  setTodos(updatedItem);
+ setCurrentTodo("");
 }
 
 function handleCompleted(todo){
