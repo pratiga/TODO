@@ -13,6 +13,7 @@ export default function Form({
     useEffect(() => {
         if (currentTodo) {
             setInputText(currentTodo.text);
+            setOptionValue(currentTodo.value);
         } else {
             setInputText("");
         }
