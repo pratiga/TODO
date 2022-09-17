@@ -9,7 +9,7 @@ const Todo = ({
   return (
     <>
       <div>
-        <h2>Category: {todo.value}</h2>
+        <h2>Category: {todo.option}</h2>
       </div>
       <div className="todo">
         <li className={`todo-item ${todo.completed ? "completed" : ""}`}>

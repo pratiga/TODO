@@ -7,16 +7,16 @@ export default function Form({
   currentTodo,
   setCurrentTodo,
 }) {
-  const [todo, setTodo] = useState(currentTodo ? currentTodo : { text: 'enter text', option: '', id: Math.random() * 1000 })
+  const [todo, setTodo] = useState(currentTodo ? currentTodo : { text: '', option: '', id: Math.random() * 1000 })
 
   const submitTodoHandler = (e) => {
     e.preventDefault();
     if (!currentTodo) {
       addTodo(todo);
-      setTodo({ text: "enter text", value: "" });
+      setTodo({ text: '', option: '', id: Math.random() * 1000 });
     } else {
       handleUpdateTodo(currentTodo.id, todo);
-      setTodo("");
+      setTodo({ text: '', option: '', id: Math.random() * 1000 });
     }
   };
   const statusHandler = (e) => {
@@ -31,6 +31,7 @@ export default function Form({
     const name = e.target.name;
 
     setTodo((preValue) => {
+      console.log(preValue)
       if (name === "text") {
         return {
           text: value,
@@ -57,6 +58,7 @@ export default function Form({
           className="todo-input"
           onChange={todoHandler}
           value={todo.text}
+          placeholder={currentTodo ? currentTodo.text : "enter the todo"}
 
         />
 
@@ -67,7 +69,9 @@ export default function Form({
             value={todo.option}
             onChange={todoHandler}
           >
-
+            <option value="">
+              {currentTodo ? currentTodo.option : "Select an option"}
+            </option>
             <option value="Work">Work</option>
             <option value="Home">Home</option>
             <option value="Travel">Travel</option>

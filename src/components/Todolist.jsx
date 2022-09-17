@@ -44,7 +44,7 @@ const Todolist = () => {
   function addTodo(todo) {
     setTodos([
       ...todos,
-      { text: todo.text, value: todo.option, completed: false, id: Math.random() * 1000 },
+      { text: todo.text, option: todo.option, completed: false, id: Math.random() * 1000 },
     ]);
   }
 
@@ -72,6 +72,7 @@ const Todolist = () => {
   }
 
   function handleEditClick(todo) {
+
     setCurrentTodo({ ...todo });
     console.log(setCurrentTodo);
   }
@@ -87,8 +88,8 @@ const Todolist = () => {
     <>
       <Form
         handleUpdateTodo={handleUpdateTodo}
-        status={status}
-        setStatus={setStatus}
+        // status={status}
+        // setStatus={setStatus}
         currentTodo={currentTodo}
         setCurrentTodo={setCurrentTodo}
         addTodo={addTodo}
@@ -99,7 +100,7 @@ const Todolist = () => {
       <div>
         <div className="todo-container">
           <ul className="todo-list">
-            {filteredTodos.map((todo) => (
+            {todos.map((todo) => (
               <Todo
                 todo={todo}
                 handleCompleted={handleCompleted}
