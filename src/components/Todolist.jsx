@@ -41,16 +41,16 @@ const Todolist = () => {
       setTodos(todoLocal);
     }
   };
-  function addTodo(text, value) {
+  function addTodo(todo) {
     setTodos([
       ...todos,
-      { text: text, value: value, completed: false, id: Math.random() * 1000 },
+      { text: todo.text, value: todo.option, completed: false, id: Math.random() * 1000 },
     ]);
   }
 
-  function handleUpdateTodo(id, title, option) {
+  function handleUpdateTodo(id, updatetodo) {
     const updatedItem = todos.map((todo) => {
-      return todo.id === id ? { text: title, value: option } : todo;
+      return todo.id === id ? { text: updatetodo.text, option: updatetodo.option } : todo;
     });
 
     setTodos(updatedItem);

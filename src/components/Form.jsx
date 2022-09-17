@@ -7,24 +7,43 @@ export default function Form({
   currentTodo,
   setCurrentTodo,
 }) {
-  const [inputText, setInputText] = useState();
-  const [optionValue, setOptionValue] = useState();
+  const [todo, setTodo] = useState(currentTodo ? currentTodo : { text: 'enter text', option: '', id: Math.random() * 1000 })
 
   const submitTodoHandler = (e) => {
     e.preventDefault();
     if (!currentTodo) {
-      addTodo(inputText, optionValue);
-      setInputText("");
-      setOptionValue("");
+      addTodo(todo);
+      setTodo({ text: "enter text", value: "" });
     } else {
-      handleUpdateTodo(currentTodo.id, inputText, optionValue);
-      setInputText("");
-      setOptionValue("");
+      handleUpdateTodo(currentTodo.id, todo);
+      setTodo("");
     }
   };
   const statusHandler = (e) => {
     setStatus(e.target.value);
   };
+
+  const todoHandler = (e) => {
+    console.log(e.target.value);
+    console.log(e.target.name);
+
+    const value = e.target.value;
+    const name = e.target.name;
+
+    setTodo((preValue) => {
+      if (name === "text") {
+        return {
+          text: value,
+          option: preValue.option,
+        };
+      } else if (name === "option") {
+        return {
+          text: preValue.text,
+          option: value,
+        }
+      }
+    })
+  }
 
   return (
     <>
@@ -34,21 +53,21 @@ export default function Form({
       <form onSubmit={submitTodoHandler}>
         <input
           type="text"
+          name="text"
           className="todo-input"
-          onChange={(e) => setInputText(e.target.value)}
-          value={inputText}
-          placeholder={currentTodo ? currentTodo.text : "enter the todo"}
+          onChange={todoHandler}
+          value={todo.text}
+
         />
 
         <label>
           Pick the category:
           <select
-            value={optionValue}
-            onChange={(e) => setOptionValue(e.target.value)}
+            name="option"
+            value={todo.option}
+            onChange={todoHandler}
           >
-            <option value="none">
-              {currentTodo ? currentTodo.value : "Select an option"}
-            </option>
+
             <option value="Work">Work</option>
             <option value="Home">Home</option>
             <option value="Travel">Travel</option>
